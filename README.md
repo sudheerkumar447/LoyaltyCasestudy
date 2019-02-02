@@ -14,6 +14,7 @@ Step 2: Create User in IAM to connect with AWS Console.
         Default output format [None]: json
 
 Step 3: VPC Creation
+
         aws ec2 create-vpc --cidr-block 10.0.0.0/16
         aws ec2 create-subnet --vpc-id vpc-036cd6f3f6c369a61 --cidr-block 10.0.1.0/24
         aws ec2 create-subnet --vpc-id vpc-036cd6f3f6c369a61 --cidr-block 10.0.2.0/24
@@ -22,7 +23,8 @@ Step 3: VPC Creation
         aws ec2 create-route --route-table-id rtb-0c4f00c3ad7c7a098 --destination-cidr-block 0.0.0.0/0 --gateway-id igw-  0098454e2b8601559
         aws ec2 associate-route-table --route-table-id rtb-0c4f00c3ad7c7a098 --subnet-id subnet-047bcfb88f2a8ff24
 
-Step 4: Launching Ec2 
+Step 4: Launching Ec2
+
  aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
  chmod 400 MyKeyPair.pem
  aws ec2 create-security-group --group-name SSHAccess --description "Security group for SSH access" --vpc-id vpc-036cd6f3f6c369a61
@@ -35,13 +37,16 @@ Step 4: Launching Ec2
 Login to the server:   ssh -i "MyKeyPair.pem" ec2-user@ec2-13-233-192-86.ap-south-1.compute.amazonaws.com
 
 Step 5: Clone from GitHub
+
         Install GIT Package to communicate with Github.
         yum install git (if it is Centos)
         git clone URL (https://github.com/nginx/nginx.git)
 
 Step 6: Installing Nginx using Yum
+        
         yum install nginx -y
-        Configuration: 
+        
+        Configuration:
 vi /etc/nginx/conf.d/loyalty.conf
 server {
      listen       80;
@@ -64,6 +69,7 @@ Url to Access : loyalty.devopsind.com
                 ( Note: Subdomain was mapped to My Domain which is available in Cloudflare)
 
 Step 7: Installing Docker.
+ 
         Yum install Docker -y
         service docker start
         chkconfig docker on
@@ -81,7 +87,8 @@ Output: Welcome to Loyalty Case Study From Docker
 Restricting Application to specific ISP:
 aws ec2 authorize-security-group-ingress --group-id sg-0da938a9a541e0b29 --protocol tcp --port 8080 --cidr 106.200.141.80/32, 183.83.93.37/32
 
-Step 8: Created a Account in Pingdom.com to monitor the Traffic of the websites which was created in ec2 server.
+Step 8:
+        Created a Account in Pingdom.com to monitor the Traffic of the websites which was created in ec2 server.
         Send emails if the website goes down for every 5 min interval
         Receving emails to devops@lji.io and jnskumar47@gmail.com(My Email)
  
