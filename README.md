@@ -6,6 +6,7 @@ Step 1: Configure the AWS Cli to Communicate with AWS Account.
         Download and Install AWS Cli MSI package in Windows System
         
 Step 2: Create User in IAM to connect with AWS Console.
+
         aws configure
         AWS Access Key ID [None]: Access ID
         AWS Secret Access Key [None]: Secret Access Key
